@@ -176,7 +176,7 @@ app.post('/request/shoppingOrder/insert', function insertOrder(req, res) {
 })
 
 app.get('/request/shoppingOrder/selectid', function selectidOrder(req, res) {
-    var getObj = req.query;
+    var getObj = req.body;
     selectSQL = 'SELECT * FROM shoppingOrder WHERE id = ?';
     selectParams = [getObj.id];
     console.log(selectParams)
@@ -211,6 +211,22 @@ app.get('/request/shoppingOrder/selectmid', function selectmidOrder(req, res) {
         })
 })
 
+
+app.post('/request/sqlall', function sqlall(req, res) {
+    sql = req.body.sql;
+    console.log(sql);
+    connection.query(sql, function (err, result) {
+            if (err) {
+                res.json({ result: 'N', message : err.message });
+            }
+            else {
+                res.json(
+                    {
+                        result: 'Y', message: result
+                    });
+            }
+        })
+})
 
 
 var server = app.listen(4000, function () {

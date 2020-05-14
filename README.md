@@ -130,7 +130,17 @@ var selectmidParams = [
 
 
 
-## 三个数据表的定义
+## 其他数据表
+
+```javascript
+'/request/sqlall'
+
+var sql = 'show tables'; //任意的sql语句
+```
+
+
+
+## 数据表的定义
 
 ```mysql
     CREATE TABLE item(
@@ -143,14 +153,14 @@ var selectmidParams = [
         shelf_life VARCHAR(20),
         PRIMARY KEY (id),
     )
-    CREATE TANLE merchant(
+    CREATE TABLE merchant(
         account VARCHAR(20) NOT NULL
         password VARCHAR(20) NOT NULL,
         contact VARCHAR(40),
         payment VARCHAR(30),
         PRIMARY KEY ( account )
     )
-    CREATE TABLE order(
+    CREATE TABLE shoppingOrder(
         id VARCHAR(20) NOT NULL,
         m_id VARCHAR(20) NOT NULL,
         t_id VARCHAR(20),
@@ -161,5 +171,34 @@ var selectmidParams = [
         payment VARCHAR(20),
         PRIMARY KEY ( id )
     )
+    CREATE TABLE volunteerActivity(
+        id VARCHAR(20) NOT NULL
+        name VARCHAR(20) NOT NULL,
+        type VARCHAR(20) NOT NULL,
+        location VARCHAR(100),
+        time_ TIME,
+        num_recruit INTEGER NOT NULL,
+        remain_recruit INTEGER NOT NULL,
+        pre_part INTEGER,
+        already_part INTEGER,
+        PRIMARY KEY (id)
+    )
+    CREATE TABLE tenant(
+        account VARCHAR(20) NOT NULL
+        password VARCHAR(20) NOT NULL,
+        id VARCHAR(20) NOT NULL,
+        address VARCHAR(100),
+        contact VARCHAR(40),
+        payment VARCHAR(30),
+        v_id VARCHAR(20),
+        PRIMARY KEY (account)
+    )
+    CREATE TABLE volunteerTaken(
+        v_id VARCHAR(20) NOT NULL,
+        va_id VARCHAR(20) NOT NULL,
+        service_time NUMERIC(6, 2),
+        PRIMARY KEY (v_id, va_id)
+    )
+   
 ```
 
