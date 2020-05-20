@@ -7,7 +7,6 @@ var instance=axios.create({
 });
 
 var data = {
-    // sql: "SELECT * FROM shoppingOrder WHERE m_id = 'jams3'"
     sql: 'show tables'
 }
 instance.post('/request/sqlall', data).then(

@@ -158,6 +158,11 @@ var sql = 'show tables'; //任意的sql语句
         password VARCHAR(20) NOT NULL,
         contact VARCHAR(40),
         payment VARCHAR(30),
+        address VARCHAR(100),
+        certificate VARCHAR(100),
+        owner_name VARCHAR(50),
+        owner_card VARCHAR(100),
+        description VARCHAR(100),
         PRIMARY KEY ( account )
     )
     CREATE TABLE shoppingOrder(
@@ -166,6 +171,8 @@ var sql = 'show tables'; //任意的sql语句
         t_id VARCHAR(20),
         item_list text,
         total_price NUMERIC(8, 2),
+        expected_time TIME,
+        order_time TIME,
         v_id VARCHAR(20),
         stat VARCHAR(20),
         payment VARCHAR(20),
