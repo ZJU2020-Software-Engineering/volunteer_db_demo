@@ -151,7 +151,8 @@ var sql = 'show tables'; //任意的sql语句
         payment VARCHAR(30),
         production_date DATE,
         shelf_life VARCHAR(20),
-        PRIMARY KEY (id),
+        imgs text,
+        PRIMARY KEY (id, merchant_id),
     )
     CREATE TABLE merchant(
         account VARCHAR(20) NOT NULL
