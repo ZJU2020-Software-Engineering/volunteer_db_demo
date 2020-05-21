@@ -26,8 +26,31 @@ def get_item_value(key, num):
         return '{} 天'.format(random.randint(0, 10))
         # return str(get_random_date())
 
+def get_merchant_value(key, num):
+    if 'account' == key:
+        return '{:08}'.format(num)
+    elif 'password' == key:
+        return ''.join(random.sample('abcdefghijklmnopqrstuvwxyz123456789', 10))
+    elif 'contact' == key:
+        return random.choice(['188', '137', '131', '173', '136']) + ''.join(random.sample('0123456789', 8))
+    elif 'address' == key:
+        return random.choice(['玉泉校区1食堂', '玉泉校区2食堂', '紫金港校区风味食堂'])
+    elif 'payment' == key:
+        # return '{} 元'.format(random.randint(0, 100))
+        e = ''.join(random.sample('abcdefghijklmnopqrstuvwxyz123456789', 8))
+        e += random.choice(['@qq.com', '@zju.edu.cn'])
+        return e
+    elif 'owner_name' == key:
+        return ''.join(random.sample('abcdefghijklmnopqrstuvwxyz123456789', 8))
+    elif 'description' == key:
+        return '无相关描述'
+        # return str(get_random_date())
+
+
+
 _factory = {
-        'item': get_item_value
+        'item': get_item_value,
+        'merchant': get_merchant_value,
         }
 
 def get_random_value(table, key, num):
@@ -44,7 +67,7 @@ def generate(table, keys):
             sql +=  ', \'' + get_random_value(table, keys[j+1], i) + '\''
         sql += ');'
         lines.append(sql)
-    with open(table+'.sql', 'w') as f:
+    with open('sql/' + table+'.sql', 'w') as f:
         for line in lines:
             f.write(line)
             f.write('\n')
@@ -52,7 +75,7 @@ def generate(table, keys):
 if __name__ == '__main__':
     table = 'item'
     keys = ['id', 'merchant_id', 'weight', 'stock', 'payment', 'production_date', 'shelf_life']
-    # table = 'merchant'
-    # keys = ['account', 'password', 'contact', 'payment', '', 'production_date', 'shelf_life']
+    table = 'merchant'
+    keys = ['account', 'password', 'contact', 'payment', 'address', 'owner_name', 'description']
     generate(table, keys)
 
